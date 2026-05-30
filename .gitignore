@@ -1,0 +1,28 @@
+# Virtual environment
+venv/
+.env
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Model binaries (large files)
+model/*.pkl
+
+# VS code settings
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.ds
+
+# Logs
+*.log
+

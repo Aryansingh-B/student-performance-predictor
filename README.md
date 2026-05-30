@@ -14,7 +14,7 @@ exam score based on study habits, attendance, and past performance.
 - **Deployment:** Streamlit Cloud
 
 ## 📁 Project Structure
-\`\`\`
+````
 student-performance-predictor/
 ├── data/               → Dataset
 ├── notebooks/          → EDA & Model training notebook
@@ -25,11 +25,11 @@ student-performance-predictor/
 ├── Dockerfile
 ├── docker-compose.yml
 └── requirements.txt
-\`\`\`
+````
 
 ## ⚙️ Run Locally
 
-\`\`\`bash
+```bash
 # 1. Clone the repo
 git clone https://github.com/aryansinghbais/student-performance-predictor.git
 cd student-performance-predictor
@@ -46,7 +46,7 @@ python src/train.py
 
 # 5. Run Streamlit app
 streamlit run app/streamlit_app.py
-\`\`\`
+```
 
 ## 👤 Author
 **Aryansingh Bais** — [LinkedIn](https://www.linkedin.com/in/aryansinghbais8/) · [GitHub](https://github.com/Aryansingh-B)

@@ -12,8 +12,10 @@
 > background — built with a full data science pipeline from EDA to deployment.
 
 **Built by:** Aryansingh Bais — Aspiring Data Scientist
+
 **Training:** Data Science with GenAI & Agentic AI — NareshIT, Hyderabad
-**Connect:** [LinkedIn](https://linkedin.com/in/aryansinghbais) · [GitHub](https://github.com/aryansinghbais)
+
+**Connect:** [LinkedIn](https://www.linkedin.com/in/aryansinghbais8/) · [GitHub](https://github.com/Aryansingh-B)
 
 ---
 

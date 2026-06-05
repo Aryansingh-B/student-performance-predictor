@@ -84,8 +84,8 @@ df = pd.DataFrame({
 # ── Save ──────────────────────────────────────────────────────────
 df.to_csv('data/student_data.csv', index=False)
 
-print(f"✅ Dataset generated: {df.shape[0]} rows × {df.shape[1]} columns")
-print(f"\n📊 Final Score Stats:")
+print(f" Dataset generated: {df.shape[0]} rows × {df.shape[1]} columns")
+print(f"\n Final Score Stats:")
 print(df['final_score'].describe().round(2))
-print(f"\n🔍 Sample rows:")
+print(f"\n Sample rows:")
 print(df.head(3).to_string())

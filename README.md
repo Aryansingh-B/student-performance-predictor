@@ -19,14 +19,14 @@
 
 ---
 
-## 🚀 Live Demo
+## Live Demo
 
-> 🔗 **[Click here to try the live app →](https://your-app-name.streamlit.app)**
+> **[Click here to try the live app →](https://your-app-name.streamlit.app)**
 > *(Deployed on Streamlit Cloud — free, no login needed)*
 
 ---
 
-## 📌 What This Project Does
+## What This Project Does
 
 This project answers one real-world question:
 
@@ -49,14 +49,14 @@ frontend → containerization → deployment.
 ---
 
 
-## 🛠️ Tech Stack
+## Tech Stack
 - **EDA & ML:** pandas, numpy, scikit-learn, matplotlib, seaborn
 - **Backend API:** FastAPI
 - **Frontend:** Streamlit
 - **Containerization:** Docker
 - **Deployment:** Streamlit Cloud
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 student-performance-predictor/
@@ -87,7 +87,7 @@ student-performance-predictor/
 └── requirements.txt         ← All dependencies pinned
 ```
 
-## ⚙️ Run Locally
+## Run Locally
 
 ```bash
 # 1. Clone the repo
@@ -108,5 +108,5 @@ python src/train.py
 streamlit run app/streamlit_app.py
 ```
 
-## 👤 Author
+## Author
 **Aryansingh Bais** — [LinkedIn](https://www.linkedin.com/in/aryansinghbais8/) · [GitHub](https://github.com/Aryansingh-B)

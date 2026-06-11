@@ -1,17 +1,15 @@
-# data/generate_data.py
-# ─────────────────────────────────────────────────────────────────
-# Generates a realistic synthetic student performance dataset
+
+# Generate a realistic synthetic student performance dataset
 # with meaningful correlations between features and final score.
-# ─────────────────────────────────────────────────────────────────
 
 import numpy as np
 import pandas as pd
 
-# ── Reproducibility ───────────────────────────────────────────────
+#  Reproducibility
 np.random.seed(42)
 N = 1000  # number of students
 
-# ── Independent Features ──────────────────────────────────────────
+# Independent Features 
 study_hours        = np.round(np.random.uniform(1, 10, N), 1)
 attendance         = np.round(np.random.uniform(50, 100, N), 1)
 previous_score     = np.round(np.random.uniform(30, 95, N), 1)
@@ -30,7 +28,7 @@ motivation_level   = np.random.choice(
     N, p=[0.25, 0.45, 0.30]
 )
 
-# ── Target Variable: final_score ──────────────────────────────────
+# Target Variable: final_score
 # Built with realistic weighted contributions from each feature
 # so EDA reveals genuine correlations (not random noise)
 
@@ -67,7 +65,7 @@ normalized = (base_score - min_s) / (max_s - min_s) * 70 + 25  # range 25–95
 noise = np.random.normal(0, 3.5, N)
 final_score = np.clip(np.round(normalized + noise, 1), 0, 100)
 
-# ── Assemble DataFrame ────────────────────────────────────────────
+# Assemble DataFrame 
 df = pd.DataFrame({
     'study_hours_per_day'      : study_hours,
     'attendance_percentage'    : attendance,
@@ -81,7 +79,7 @@ df = pd.DataFrame({
     'final_score'              : final_score
 })
 
-# ── Save ──────────────────────────────────────────────────────────
+# Save
 df.to_csv('data/student_data.csv', index=False)
 
 print(f" Dataset generated: {df.shape[0]} rows × {df.shape[1]} columns")

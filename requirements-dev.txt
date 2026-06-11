@@ -1,0 +1,19 @@
+# Includes everything in requirements.txt
+-r requirements.txt
+
+# ── Jupyter / Notebooks ───────────
+jupyter==1.1.1
+jupyterlab==4.5.7
+notebook==7.1.0
+ipykernel==7.2.0
+ipywidgets==8.1.8
+
+# ── EDA & Visualization ───────────
+matplotlib==3.10.9
+seaborn==0.13.2
+
+# ── Git utilities ─────────────────
+GitPython==3.1.50
+
+# ── Dev/debug tools ───────────────
+ipython==8.39.0

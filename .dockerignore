@@ -1,32 +1,52 @@
-# Virtual environment — never goes in Docker
-venv/
-.venv/
-
-# Git files
-.git/
-.gitignore
-
-# Python cache
+# ── Python ────────────────────────────────────
 __pycache__/
 *.py[cod]
 *.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
 
-# Jupyter checkpoints
-.ipynb_checkpoints/
+# ── Virtual Environments ──────────────────────
+venv/
+.venv/
+env/
+.env/
+
+# ── Jupyter / Notebooks ───────────────────────
 notebooks/
+.ipynb_checkpoints/
+*.ipynb
 
-# Model binaries (regenerated inside container)
-model/*.pkl
+# ── Data & Plots ──────────────────────────────
+data/plot_*.png
+data/generate_data.py
 
-# VS Code
-.vscode/
+# ── Model artifacts (shared via volume mount) ─
+model/
 
-# OS files
+# ── Git ───────────────────────────────────────
+.git/
+.gitignore
+
+# ── Dev dependencies ──────────────────────────
+requirements-dev.txt
+
+# ── Docker files (no need to copy into image) ─
+Dockerfile
+Dockerfile.api
+docker-compose.yml
+.dockerignore
+
+# ── OS junk ───────────────────────────────────
 .DS_Store
 Thumbs.db
-
-# Logs
 *.log
 
-# Readme & docs (not needed at runtime)
-README.md
+# ── IDE / Editor ──────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo

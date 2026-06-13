@@ -17,7 +17,7 @@
 
 | Service | URL |
 |---|---|
-| **Streamlit App** | [Coming Soon — deploying on Streamlit Cloud] |
+| **Streamlit App** | [https://student-performance-predictor-hciqulnwu7e7n5fjfsaz9b.streamlit.app/] |
 | **FastAPI Swagger** | [student-performance-predictor-api-cf6d.onrender.com/docs](https://student-performance-predictor-api-cf6d.onrender.com/docs) |
 
 ---

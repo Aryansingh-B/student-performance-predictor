@@ -27,3 +27,7 @@ PyYAML==6.0.3
 pillow==12.2.0
 packaging==26.2
 typing_extensions==4.15.0
+
+# ── Visualization (needed by train.py for plots) ──
+matplotlib==3.10.9
+seaborn==0.13.2

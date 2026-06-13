@@ -110,9 +110,8 @@ if not os.path.exists('model/model.pkl'):
     with st.spinner('🤖 First run detected — training model, please wait ~30 seconds...'):
         os.system('python data/generate_data.py')
         os.system('python -m src.train')
-    st.success('✅ Model trained successfully! Loading app...')
-    st.rerun()
-
+    st.success('✅ Model trained! Please refresh the page.')
+    st.stop()   
 
 # ════════════════════════════════════════════════════════════════
 # ── Load Model ───────────────────────────────────────────────────

@@ -1,4 +1,4 @@
-# 🎓 Student Performance Predictor
+# Student Performance Predictor
 
 ![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)
 ![Streamlit](https://img.shields.io/badge/Streamlit-Frontend-FF4B4B?logo=streamlit&logoColor=white)
@@ -13,22 +13,22 @@
 
 ---
 
-## 🚀 Live Demo
+## Live Demo
 
 | Service | URL |
 |---|---|
-| 🎯 **Streamlit App** | [Coming Soon — deploying on Streamlit Cloud] |
-| ⚡ **FastAPI Swagger** | [student-performance-predictor-api-cf6d.onrender.com/docs](https://student-performance-predictor-api-cf6d.onrender.com/docs) |
+| **Streamlit App** | [Coming Soon — deploying on Streamlit Cloud] |
+| **FastAPI Swagger** | [student-performance-predictor-api-cf6d.onrender.com/docs](https://student-performance-predictor-api-cf6d.onrender.com/docs) |
 
 ---
 
-## 📸 Preview
+## Preview
 
 > Predicts exam scores (0–100) with grade classification (A+, A, B, C, D, F) and confidence band using a Random Forest model with R² = 0.85 and MAE ± 4.2.
 
 ---
 
-## 🧠 Features
+## Features
 
 - **ML Pipeline** — Data generation → EDA → Feature engineering → Model training → Evaluation
 - **3 Models Compared** — Linear Regression, Decision Tree, Random Forest (best selected automatically)
@@ -39,7 +39,7 @@
 
 ---
 
-## 🏗️ Project Structure
+## Project Structure
 
 ```
 student-performance-predictor/
@@ -65,7 +65,7 @@ student-performance-predictor/
 
 ---
 
-## ⚙️ Tech Stack
+## Tech Stack
 
 | Layer | Technology |
 |---|---|
@@ -79,7 +79,7 @@ student-performance-predictor/
 
 ---
 
-## 🔧 Run Locally
+## Run Locally
 
 ### Method 1 — Without Docker (Recommended for development)
 
@@ -123,7 +123,7 @@ docker-compose up --build
 
 ---
 
-## 📊 Model Performance
+## Model Performance
 
 | Model | R² Score | MAE |
 |---|---|---|
@@ -135,7 +135,7 @@ Random Forest was selected automatically as the best performing model.
 
 ---
 
-## 🎯 Input Features
+## Input Features
 
 | Feature | Type | Range |
 |---|---|---|
@@ -151,7 +151,7 @@ Random Forest was selected automatically as the best performing model.
 
 ---
 
-## 📡 API Usage
+## API Usage
 
 ```bash
 curl -X POST "https://student-performance-predictor-api-cf6d.onrender.com/predict" \
@@ -181,7 +181,7 @@ curl -X POST "https://student-performance-predictor-api-cf6d.onrender.com/predic
 
 ---
 
-## 👨‍💻 Author
+## Author
 
 **Aryansingh Bais**
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?logo=linkedin)](https://linkedin.com/in/aryansingh-bais)
@@ -189,6 +189,6 @@ curl -X POST "https://student-performance-predictor-api-cf6d.onrender.com/predic
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License.

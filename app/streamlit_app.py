@@ -100,6 +100,19 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+# ════════════════════════════════════════════════════════════════
+# ── Auto-train if model doesn't exist (for cloud deployment) ────
+# ════════════════════════════════════════════════════════════════
+
+if not os.path.exists('model/model.pkl'):
+    os.makedirs('model', exist_ok=True)
+    os.makedirs('data', exist_ok=True)
+    with st.spinner('🤖 First run detected — training model, please wait ~30 seconds...'):
+        os.system('python data/generate_data.py')
+        os.system('python -m src.train')
+    st.success('✅ Model trained successfully! Loading app...')
+    st.rerun()
+
 
 # ════════════════════════════════════════════════════════════════
 # ── Load Model ───────────────────────────────────────────────────

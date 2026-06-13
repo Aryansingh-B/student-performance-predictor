@@ -22,7 +22,7 @@ notebooks/
 
 # ── Data & Plots ──────────────────────────────
 data/plot_*.png
-data/generate_data.py
+
 
 # ── Model artifacts (shared via volume mount) ─
 model/

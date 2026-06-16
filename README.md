@@ -187,8 +187,6 @@ STUDENT-PERFORMANCE-PREDICTION/
 │   ├── train.py
 │   └── utils.py
 │
-├── venv/
-│
 ├── .dockerignore
 ├── .gitignore
 ├── .python-version

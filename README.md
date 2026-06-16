@@ -69,7 +69,7 @@ The global EdTech market is growing at **18.3% CAGR (2023-2030)**, and education
 - **Model explainability** — shows which model made the prediction
 
 ### 📊 Data Exploration Dashboard
-- **15+ EDA visualizations** including:
+- **10+ EDA visualizations** including:
   - Feature correlation heatmaps
   - Exam score distributions by demographic
   - Attendance vs. performance analysis
@@ -79,9 +79,9 @@ The global EdTech market is growing at **18.3% CAGR (2023-2030)**, and education
 
 ### 🤖 Machine Learning Pipeline
 - **3 competitive models trained:**
-  - 🏆 Gradient Boosting (XGBoost)
-  - 🥈 Random Forest Regressor
-  - 🥉 Linear Regression with feature scaling
+  - Gradient Boosting (XGBoost)
+  - Random Forest Regressor
+  - Linear Regression with feature scaling
 - **Automatic model selection** based on validation metrics
 - **Cross-validation** (5-fold) for robust evaluation
 - **Feature importance analysis** using SHAP principles
@@ -158,71 +158,62 @@ The global EdTech market is growing at **18.3% CAGR (2023-2030)**, and education
 
 ## 📂 Project Structure
 
+```text
+STUDENT-PERFORMANCE-PREDICTION/
+│
+├── .streamlit/
+│   └── config.toml
+│
+├── api/
+│   ├── __init__.py
+│   └── main.py
+│
+├── app/
+│   └── streamlit_app.py
+│
+├── data/
+│   ├── generate_data.py
+│   ├── student_data.csv
+│   ├── plot_actual_vs_predicted.png
+│   ├── plot_attendance_bins.png
+│   ├── plot_binary_features.png
+│   ├── plot_categorical_vs_score.png
+│   ├── plot_correlation_heatmap.png
+│   ├── plot_cross_validation.png
+│   ├── plot_feature_importance.png
+│   ├── plot_feature_importances_rf.png
+│   ├── plot_model_comparison.png
+│   ├── plot_numeric_distributions.png
+│   ├── plot_pairplot.png
+│   ├── plot_study_vs_score.png
+│   └── plot_target_distribution.png
+│
+├── model/
+│   └── model.pkl
+│
+├── notebooks/
+│   └── 01_EDA_and_model.ipynb
+│
+├── src/
+│   ├── __init__.py
+│   ├── predict.py
+│   ├── train.py
+│   └── utils.py
+│
+├── venv/
+│
+├── .dockerignore
+├── .gitignore
+├── .python-version
+├── docker-compose.yml
+├── Dockerfile
+├── Dockerfile.api
+├── packages.txt
+├── README.md
+├── requirements.txt
+├── requirements-dev.txt
+└── setup.sh
 ```
-student-performance-predictor/
-│
-├── 📁 data/
-│   ├── 📄 generate_data.py           # Synthetic dataset creation (1000 samples)
-│   ├── 📊 student_data.csv           # Generated training dataset
-│   ├── 📈 plot_correlation.png       # Feature correlation heatmap
-│   ├── 📉 plot_distributions.png     # Exam score distribution analysis
-│   ├── 📐 plot_feature_importance.png # Top factors affecting performance
-│   └── 📋 plot_*.png                 # 15+ additional EDA visualizations
-│
-├── 📁 notebooks/
-│   └── 📓 01_EDA_and_Model.ipynb     # Complete exploratory analysis & model training
-│                                      # ├─ Data loading & cleaning
-│                                      # ├─ Correlation & distribution analysis
-│                                      # ├─ Outlier detection
-│                                      # ├─ Feature engineering
-│                                      # ├─ Model training & comparison
-│                                      # └─ Cross-validation & metrics
-│
-├── 📁 src/
-│   ├── 🔧 utils.py                   # Shared utilities
-│   │                                  # ├─ load_data()
-│   │                                  # ├─ encode_features()
-│   │                                  # ├─ scale_features()
-│   │                                  # └─ evaluate_model()
-│   ├── 🚂 train.py                   # ML pipeline orchestration
-│   │                                  # ├─ Trains 3 competing models
-│   │                                  # ├─ Performs cross-validation
-│   │                                  # ├─ Selects best model
-│   │                                  # └─ Saves artifacts (.pkl, encoder)
-│   └── 🔮 predict.py                 # Inference engine
-│                                      # ├─ Loads trained model
-│                                      # ├─ Validates input
-│                                      # ├─ Generates predictions
-│                                      # └─ Computes confidence bands
-│
-├── 📁 app/
-│   └── 🎨 streamlit_app.py           # Interactive web frontend
-│                                      # ├─ Prediction interface (sliders, inputs)
-│                                      # ├─ Gauge charts & radar plots
-│                                      # ├─ Model comparison tab
-│                                      # ├─ EDA explorer tab
-│                                      # ├─ Tips & recommendations
-│                                      # └─ Responsive mobile-friendly UI
-│
-├── 📁 api/
-│   └── 🌐 main.py                    # FastAPI backend
-│                                      # ├─ POST /predict
-│                                      # ├─ GET /info
-│                                      # ├─ GET /health
-│                                      # └─ Swagger auto-docs
-│
-├── 📁 model/                         # (Gitignored, created after training)
-│   ├── 🤖 model.pkl
-│   ├── 🔤 encoder.pkl
-│   └── 📊 metrics.json
-│
-├── 🐳 Dockerfile                     # Streamlit container definition
-├── 🐳 Dockerfile.api                 # FastAPI container definition
-├── 🐳 docker-compose.yml             # Multi-service orchestration
-├── 📦 requirements.txt                # Python dependencies (pinned versions)
-└── 📄 README.md                      # This file!
-```
-
 ---
 
 ## 🛠️ Installation & Setup
@@ -445,6 +436,25 @@ docker run -p 8000:8000 student-predictor-api
 5. **Deploy!** ✅
 
 *Your app will be live in 2-3 minutes on `your-username-student-predictor.streamlit.app`*
+
+### Deploy FastAPI to Cloud (Examples)
+
+**Option A: Heroku (Deprecated, use alternatives)**
+
+**Option B: Railway.app** (Easiest for Python)
+```bash
+railway link
+railway up
+```
+
+**Option C: Google Cloud Run**
+```bash
+gcloud run deploy student-predictor --source . --platform managed --region us-central1
+```
+
+**Option D: AWS Lambda + API Gateway** (Serverless)
+- Package with `serverless` framework
+- Auto-scales on demand
 
 ---
 

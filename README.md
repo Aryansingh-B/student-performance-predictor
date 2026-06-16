@@ -173,20 +173,7 @@ STUDENT-PERFORMANCE-PREDICTION/
 │
 ├── data/
 │   ├── generate_data.py
-│   ├── student_data.csv
-│   ├── plot_actual_vs_predicted.png
-│   ├── plot_attendance_bins.png
-│   ├── plot_binary_features.png
-│   ├── plot_categorical_vs_score.png
-│   ├── plot_correlation_heatmap.png
-│   ├── plot_cross_validation.png
-│   ├── plot_feature_importance.png
-│   ├── plot_feature_importances_rf.png
-│   ├── plot_model_comparison.png
-│   ├── plot_numeric_distributions.png
-│   ├── plot_pairplot.png
-│   ├── plot_study_vs_score.png
-│   └── plot_target_distribution.png
+│   └── student_data.csv
 │
 ├── model/
 │   └── model.pkl

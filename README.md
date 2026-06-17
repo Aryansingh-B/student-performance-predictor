@@ -12,8 +12,17 @@
 
 **An intelligent, end-to-end Machine Learning web application that predicts student exam performance with confidence intervals using a full production-grade data science pipeline.**
 
-[📱 Live Demo](#-live-demo) • [🏗️ Architecture](#-architecture) • [⚙️ Tech Stack](#-tech-stack) • [📖 Documentation](#-documentation)
+<a name="live demo"></a>
+## 📱 Live Demo
 
+<a name="architecture"></a>
+## 🏗️ Architecture
+
+<a name="tech-stack"></a>
+## ⚙️ Tech Stack
+
+<a name="documentation"></a>
+## 📖 Documentation
 </div>
 
 ---

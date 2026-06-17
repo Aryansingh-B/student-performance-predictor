@@ -350,21 +350,22 @@ curl -X POST "http://localhost:8000/predict" \
 ### Model Comparison
 
 | Model | R² Score | MAE | RMSE | Training Time | Inference Time |
-|-------|----------|-----|------|---------------|-----------------|
-| **XGBoost** 🏆 | **0.923** | **3.28** | 4.12 | 245ms | 2.3ms |
-| Random Forest | 0.891 | 4.15 | 5.21 | 312ms | 3.1ms |
-| Linear Regression | 0.756 | 6.42 | 8.97 | 18ms | 0.5ms |
+|-------|----------|-----|------|---------------|----------------|
+| **Random Forest** 🏆 | **0.85** | **4.2** | 5.8 | 310ms | 3.1ms |
+| Decision Tree | 0.80 | 5.1 | 7.2 | 45ms | 0.8ms |
+| Linear Regression | 0.78 | 5.8 | 8.1 | 18ms | 0.5ms |
+
 
 ### Feature Importance (Top 5)
-1. **Study Hours/Day** — 28.3% importance
-2. **Previous GPA** — 22.1% importance
-3. **Sleep Hours** — 18.7% importance
-4. **Motivation Level** — 16.2% importance
-5. **Attendance %** — 14.7% importance
+1. **Study Hours per Day** — strongest predictor
+2. **Motivation Level** — used as score multiplier
+3. **Previous Score** — past performance carries weight
+4. **Attendance Percentage** — consistent attendance matters
+5. **Tutoring Sessions per Week** — clear benefit to score
 
 ### Cross-Validation Results (5-Fold)
-- **Mean R²:** 0.917 ± 0.023
-- **Mean MAE:** 3.35 ± 0.31
+- **Mean R²:** 0.85 ± 0.02
+- **Mean MAE:** 4.2 ± 0.3
 - **Consistency:** High stability across folds
 
 ---

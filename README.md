@@ -148,7 +148,7 @@ The global EdTech market is growing at **18.3% CAGR (2023-2030)**, and education
 | **Frontend** | Streamlit | Interactive web interface with real-time visualizations |
 | **Backend API** | FastAPI, Uvicorn | High-performance REST API with auto-generated docs |
 | **Data Science** | pandas, NumPy | Data manipulation and numerical computing |
-| **ML Models** | scikit-learn, XGBoost | Model training, evaluation, and inference |
+| **ML Models** | scikit-learn | Model training, evaluation, and inference |
 | **Visualization** | Matplotlib, Seaborn, Plotly | EDA charts and interactive dashboards |
 | **Containerization** | Docker, Docker Compose | Environment consistency and orchestration |
 | **Deployment** | Streamlit Cloud | Free, serverless hosting with auto-scaling |

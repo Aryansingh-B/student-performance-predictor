@@ -11,6 +11,7 @@ import plotly.graph_objects as go
 import plotly.express as px
 import joblib
 import os
+from PIL import Image
 
 # ── Page Config ───────────────────────────────────────────────────
 st.set_page_config(
@@ -228,69 +229,59 @@ def make_radar(input_dict):
 
 def make_feature_bar(input_dict):
     """Horizontal bar showing how each feature compares to average."""
-    dataset = pd.read_csv('data/student_data.csv')
-    avg = dataset[[
-        'study_hours_per_day','attendance_percentage',
-        'previous_score','sleep_hours_per_day',
-        'tutoring_sessions_per_week'
-    ]].mean()
-
-    features = list(avg.index)
-    student_v = [input_dict[f] for f in features]
-    avg_v     = avg.values.tolist()
-    labels    = [f.replace('_',' ').title() for f in features]
-
-    fig = go.Figure()
-    fig.add_trace(go.Bar(
-        name='This Student', x=student_v, y=labels,
-        orientation='h', marker_color='#2E75B6',
-        text=[f'{v:.1f}' for v in student_v],
-        textposition='outside'
-    ))
-    fig.add_trace(go.Bar(
-        name='Dataset Average', x=avg_v, y=labels,
-        orientation='h', marker_color='#94a3b8',
-        text=[f'{v:.1f}' for v in avg_v],
-        textposition='outside'
-    ))
-    fig.update_layout(
-        barmode='group', height=300,
-        margin=dict(t=20, b=20, l=10, r=60),
-        paper_bgcolor='rgba(0,0,0,0)',
-        plot_bgcolor='rgba(0,0,0,0)',
-        legend=dict(orientation='h', yanchor='bottom', y=-0.35),
-        xaxis=dict(showgrid=True, gridcolor='#f0f0f0')
-    )
+    features = [
+        'study_hours_per_day', 'attendance_percentage', 'previous_score',
+        'sleep_hours_per_day', 'tutoring_sessions_per_week'
+    ]
+    student_vals = [
+        input_dict['study_hours_per_day'],
+        input_dict['attendance_percentage'],
+        input_dict['previous_score'],
+        input_dict['sleep_hours_per_day'] * 10,
+        input_dict['tutoring_sessions_per_week'] * 10
+    ]
+    
+    avg_vals = [5.5, 75, 62, 7.2*10, 2*10]
+    
+    fig = go.Figure(data=[
+        go.Bar(y=features, x=student_vals, orientation='h',
+               name='This Student', marker_color='#2E75B6'),
+        go.Bar(y=features, x=avg_vals, orientation='h',
+               name='Dataset Average', marker_color='#cbd5e1')
+    ])
+    fig.update_layout(barmode='group', height=300, 
+                      margin=dict(t=20, b=20, l=120, r=20),
+                      paper_bgcolor='rgba(0,0,0,0)')
     return fig
 
 
 # ════════════════════════════════════════════════════════════════
-# ── SIDEBAR — Input Form ──────────────────────────────────────────
+# ── SIDEBAR (INPUT CONTROLS) ──────────────────────────────────────
 # ════════════════════════════════════════════════════════════════
 
 with st.sidebar:
-    st.markdown("## 🎓 Student Details")
-    st.markdown("Fill in the student profile below:")
-    st.markdown("---")
+    st.markdown("# 📝 Student Details")
+    st.markdown("Fill in the fields below to predict exam score.")
 
-    st.markdown('<p class="section-header">📚 Academic Habits</p>',
+    st.markdown("---")
+    st.markdown('<p class="section-header">📚 Academic</p>',
                 unsafe_allow_html=True)
 
     study_hours = st.slider(
-        "Study Hours per Day", 0.5, 12.0, 6.0, 0.5,
-        help="How many hours does the student study daily?"
+        "Study Hours per Day", 1.0, 10.0, 5.0, 0.5,
+        help="Average hours spent studying per day"
     )
     attendance = st.slider(
-        "Attendance Percentage (%)", 50.0, 100.0, 80.0, 1.0,
+        "Attendance Percentage (%)", 0.0, 100.0, 75.0, 1.0,
         help="Percentage of classes attended"
     )
     previous_score = st.slider(
-        "Previous Exam Score", 0.0, 100.0, 65.0, 1.0,
-        help="Score in the most recent exam"
+        "Previous Exam Score", 0, 100, 65,
+        help="Score from the previous exam"
     )
     tutoring = st.slider(
-        "Tutoring Sessions per Week", 0, 5, 1,
-        help="Number of extra tutoring sessions per week"
+        "Tutoring Sessions per Week", 0, 5, 2,
+        help="Number of tutoring sessions"
     )
 
     st.markdown("---")
@@ -477,35 +468,59 @@ plot_map = {
 
 with tab1:
     if os.path.exists(plot_map["tab1"]):
-        st.image(plot_map["tab1"], use_column_width=True)
-        st.markdown("""<div class="tip-box">
-            📌 <b>Insight:</b> The final score is approximately normally
-            distributed with mean ~62 — ideal for regression modeling.
-        </div>""", unsafe_allow_html=True)
+        try:
+            img = Image.open(plot_map["tab1"])
+            st.image(img, use_column_width=True)
+            st.markdown("""<div class="tip-box">
+                📌 <b>Insight:</b> The final score is approximately normally
+                distributed with mean ~62 — ideal for regression modeling.
+            </div>""", unsafe_allow_html=True)
+        except Exception as e:
+            st.error(f"Error loading image: {e}")
+    else:
+        st.warning(f"Image not found: {plot_map['tab1']}")
 
 with tab2:
     if os.path.exists(plot_map["tab2"]):
-        st.image(plot_map["tab2"], use_column_width=True)
-        st.markdown("""<div class="tip-box">
-            📌 <b>Insight:</b> study_hours, motivation, and previous_score
-            show the strongest correlations with final_score.
-        </div>""", unsafe_allow_html=True)
+        try:
+            img = Image.open(plot_map["tab2"])
+            st.image(img, use_column_width=True)
+            st.markdown("""<div class="tip-box">
+                📌 <b>Insight:</b> study_hours, motivation, and previous_score
+                show the strongest correlations with final_score.
+            </div>""", unsafe_allow_html=True)
+        except Exception as e:
+            st.error(f"Error loading image: {e}")
+    else:
+        st.warning(f"Image not found: {plot_map['tab2']}")
 
 with tab3:
     if os.path.exists(plot_map["tab3"]):
-        st.image(plot_map["tab3"], use_column_width=True)
-        st.markdown("""<div class="tip-box">
-            📌 <b>Insight:</b> Random Forest confirms study_hours and
-            motivation_level as the top 2 most important features.
-        </div>""", unsafe_allow_html=True)
+        try:
+            img = Image.open(plot_map["tab3"])
+            st.image(img, use_column_width=True)
+            st.markdown("""<div class="tip-box">
+                📌 <b>Insight:</b> Random Forest confirms study_hours and
+                motivation_level as the top 2 most important features.
+            </div>""", unsafe_allow_html=True)
+        except Exception as e:
+            st.error(f"Error loading image: {e}")
+    else:
+        st.warning(f"Image not found: {plot_map['tab3']}")
 
 with tab4:
     if os.path.exists(plot_map["tab4"]):
-        st.image(plot_map["tab4"], use_column_width=True)
-        st.markdown("""<div class="tip-box">
-            📌 <b>Insight:</b> Linear Regression achieved the best R²=0.90
-            — confirming that the feature-score relationships are linear.
-        </div>""", unsafe_allow_html=True)
+        try:
+            img = Image.open(plot_map["tab4"])
+            st.image(img, use_column_width=True)
+            st.markdown("""<div class="tip-box">
+                📌 <b>Insight:</b> Linear Regression achieved the best R²=0.90
+                — confirming that the feature-score relationships are linear.
+            </div>""", unsafe_allow_html=True)
+        except Exception as e:
+            st.error(f"Error loading image: {e}")
+    else:
+        st.warning(f"Image not found: {plot_map['tab4']}")
 
 # ════════════════════════════════════════════════════════════════
 # ── FOOTER ───────────────────────────────────────────────────────

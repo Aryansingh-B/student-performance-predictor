@@ -1,168 +1,133 @@
-# 🎓 Student Performance Predictor
+# 🎓 Student Performance Prediction System
 
-<div align="center">
+> **Turning Student Data into Actionable Academic Insights**
+>
+> An end-to-end machine learning application that predicts student exam scores using academic, lifestyle, and background factors. Built with **Python, Scikit-learn, FastAPI, and Streamlit**, the project compares multiple regression models and delivers predictions through an interactive web application. The best evaluated model, Random Forest, achieved an **R² score of 0.85** with an **MAE of 4.2 points** on a 0–100 exam score scale.
 
-[![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
-[![Streamlit](https://img.shields.io/badge/Streamlit-Frontend-FF4B4B?logo=streamlit&logoColor=white)](https://streamlit.io/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
-[![scikit-learn](https://img.shields.io/badge/scikit--learn-ML-F7931E?logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
-[![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
-[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
-[![Status](https://img.shields.io/badge/Status-Active-success)](https://github.com/Aryansingh-B/student-performance-predictor)
+![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)
+![Streamlit](https://img.shields.io/badge/Streamlit-Frontend-FF4B4B?logo=streamlit&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688?logo=fastapi&logoColor=white)
+![Scikit-learn](https://img.shields.io/badge/Scikit--learn-ML-F7931E?logo=scikit--learn&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED?logo=docker&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green)
 
-**An intelligent, end-to-end Machine Learning web application that predicts student exam performance with confidence intervals using a full production-grade data science pipeline.**
-
-[📱 Live Demo](#-live-demo) • [🏗️ Architecture](#️-architecture) • [⚙️ Tech Stack](#️-tech-stack) • [📖 Documentation](#-documentation)
-
-</div>
+**Quick Links:** [Live Demo](https://student-performance-predictor-hciqulnwu7e7n5fjfsaz9b.streamlit.app/) · [Dataset](#dataset-overview) · [Model Results](#key-insights--findings) · [Project Structure](#repository-structure--how-to-run)
 
 ---
 
-## 🎯 Problem Statement
+## 1. Business Problem / Problem Statement
 
-In the education sector, identifying students at risk of poor academic performance early is crucial for intervention and support. However, schools and educational institutions lack a **data-driven, predictive system** to:
+Educational institutions need ways to identify students who may be at risk of poor academic performance before final examinations.
 
-- ❌ Estimate which students will underperform based on habits & background
-- ❌ Identify the most impactful factors affecting exam scores
-- ❌ Quantify the confidence in predictions for strategic planning
-- ❌ Scale predictions across hundreds of students automatically
+Without data-driven insights, educators may struggle to identify the factors influencing student outcomes, prioritize academic support, and allocate tutoring resources effectively.
 
-**This project solves that problem.**
+**Business objective:** Develop a predictive system that estimates exam performance and helps educators identify students who may benefit from timely academic intervention.
 
----
+## 2. Dataset Overview & Data Dictionary
 
-## 💼 Business Understanding & Impact
+The project uses a **synthetically generated dataset of 1,000 student records** for model development and evaluation.
 
-### The Opportunity
+| Field | Data Type | Business Definition |
+|---|---|---|
+| `study_hours` | Float | Average daily study hours |
+| `attendance` | Numeric | Student attendance percentage |
+| `sleep_hours` | Float | Average daily sleep duration |
+| `motivation` | Numeric | Student motivation level |
+| `previous_gpa` | Float | Previous academic performance |
+| `family_income` | Numeric | Family income |
+| `parental_education` | Categorical | Parent's education level |
+| `school_type` | Categorical | Public or private school |
+| `grade_level` | Integer | Student's current grade |
+| `exam_score` | Numeric | Target variable: predicted exam score (0–100) |
 
-The global EdTech market is growing at **18.3% CAGR (2023-2030)**, and educational institutions increasingly seek AI-driven solutions for:
+**Dataset details:**
+- Records: **1,000**
+- Input features: **9**
+- Target variable: `exam_score`
+- Source: Synthetically generated for educational purposes.
+- Generation script: `data/generate_data.py`
 
-| Problem | Impact | Our Solution |
-|---------|--------|--------------|
-| **Early Dropout Detection** | 26% of students dropout without intervention signals | Predict performance 3 months ahead |
-| **Resource Allocation** | Schools can't prioritize remedial classes | Target support to at-risk students |
-| **Parent-Teacher Communication** | Lack of objective metrics for discussions | Provide confidence-backed predictions |
-| **Curriculum Optimization** | Unknown impact of study hours vs. sleep | Feature importance reveals key drivers |
+## 3. Project Objectives & Key Business Questions
 
-### Key Metrics & ROI
+### Analytical Objectives
+- Develop a regression model to estimate student exam scores.
+- Identify the factors most associated with academic performance.
+- Compare multiple machine learning models using evaluation metrics.
+- Build an interactive application for individual student predictions and data exploration.
 
-- **Prediction Accuracy:** 89-94% R² across models (XGBoost, Random Forest, Linear Regression)
-- **Mean Absolute Error:** ±3-5 points on a 0-100 scale
-- **Model Inference Time:** <100ms per prediction
-- **Scalability:** Processes 1000+ predictions/second on standard hardware
+### Key Business Questions
+1. How accurately can exam scores be predicted using student-related factors?
+2. Which factors have the greatest influence on predicted performance?
+3. How does study time relate to academic outcomes?
+4. What role do attendance and sleep patterns play in student performance?
+5. Which regression model provides the most reliable predictions?
+6. How can prediction ranges help educators interpret model uncertainty?
 
-### Target Users
+## 4. Methodology & Analytical Workflow
 
-✅ **Schools & Coaching Institutes** — Identify struggling students, allocate tutors  
-✅ **EdTech Platforms** — Personalized learning recommendations  
-✅ **Parents** — Track child progress vs. peer benchmarks  
-✅ **Students** — Self-assessment & motivation insights  
+| Stage | Work Performed | Tools |
+|---|---|---|
+| Data Generation | Created a synthetic dataset with 1,000 student records | Python, Pandas |
+| Data Preparation | Prepared numerical and categorical features for modeling | Pandas, NumPy |
+| EDA | Explored distributions, correlations, and performance patterns through 10+ visualizations | Matplotlib, Seaborn, Plotly |
+| Model Development | Trained and compared three regression algorithms | Scikit-learn |
+| Model Evaluation | Evaluated models using R², MAE, RMSE, and 5-fold cross-validation | Scikit-learn |
+| API Development | Created prediction, batch prediction, model information, and health-check endpoints | FastAPI |
+| Application Development | Built an interactive prediction interface and exploration dashboard | Streamlit |
+| Deployment | Containerized the application and API for local execution | Docker, Docker Compose |
 
----
+### Model Comparison
 
-## 🚀 Features
+| Model | R² Score | MAE | RMSE |
+|---|---:|---:|---:|
+| **Random Forest** | **0.85** | **4.2** | 5.8 |
+| Decision Tree | 0.80 | 5.1 | 7.2 |
+| Linear Regression | 0.78 | 5.8 | 8.1 |
 
-### 🎮 Interactive Prediction Interface
-- **Real-time scoring** with 9 customizable student input features
-- **Visual confidence bands** (score ± MAE) for uncertainty quantification
-- **Letter grade mapping** (A+ to F) with performance descriptions
-- **Model explainability** — shows which model made the prediction
+## 5. Dashboard Preview & Visual Highlights
 
-### 📊 Data Exploration Dashboard
-- **10+ EDA visualizations** including:
-  - Feature correlation heatmaps
-  - Exam score distributions by demographic
-  - Attendance vs. performance analysis
-  - Sleep impact on grades
-- **Interactive charts** powered by Streamlit
-- **Outlier detection** and summary statistics
+### Student Performance Prediction
+![Prediction Interface](assets/prediction_interface.png)
 
-### 🤖 Machine Learning Pipeline
-- **3 competitive models trained:**
-  - Gradient Boosting (XGBoost)
-  - Random Forest Regressor
-  - Linear Regression with feature scaling
-- **Automatic model selection** based on validation metrics
-- **Cross-validation** (5-fold) for robust evaluation
-- **Feature importance analysis** using SHAP principles
+*Interactive student inputs, predicted exam scores, confidence bands, and letter-grade mapping.*
 
-### 📡 Production-Ready API
-- **RESTful FastAPI backend** with Swagger documentation
-- **Health check endpoint** for monitoring
-- **Batch prediction support**
-- **Input validation** & error handling
+### Data Exploration Dashboard
+![EDA Dashboard](assets/eda_dashboard.png)
 
-### 🐳 Containerized Deployment
-- **Docker images** for Streamlit & FastAPI services
-- **Docker Compose** orchestration for local development
-- **Production-ready** with optimized base images
+*Explores score distributions, feature relationships, attendance, study habits, and other performance patterns.*
 
----
+### Model Comparison
+![Model Comparison](assets/model_comparison.png)
 
-## 🏗️ Architecture
+*Compares regression models using R², MAE, RMSE, and model performance metrics.*
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                      USER INTERFACE LAYER                        │
-│  ┌──────────────────────────────────────────────────────────┐  │
-│  │  Streamlit Web App (Port 8501)                           │  │
-│  │  ├─ Real-time Prediction UI (Sliders, Inputs)           │  │
-│  │  ├─ Performance Dashboard (Charts, Metrics)             │  │
-│  │  ├─ EDA Explorer (Visualizations, Stats)                │  │
-│  │  └─ Model Comparison (Accuracy, Confidence)             │  │
-│  └──────────────────────────────────────────────────────────┘  │
-└───────────────────┬────────────────────────────────────────────┘
-                    │ HTTP/REST Calls
-                    ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                     API LAYER (Backend)                          │
-│  ┌──────────────────────────────────────────────────────────┐  │
-│  │  FastAPI Server (Port 8000)                              │  │
-│  │  ├─ POST /predict (Student data → Prediction)           │  │
-│  │  ├─ GET /info (Model metadata)                          │  │
-│  │  ├─ GET /health (Service status)                        │  │
-│  │  └─ POST /predict-batch (Bulk predictions)              │  │
-│  └──────────────────────────────────────────────────────────┘  │
-└───────────────────┬────────────────────────────────────────────┘
-                    │ Load Artifacts
-                    ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                   ML INFERENCE LAYER                             │
-│  ┌──────────────────────────────────────────────────────────┐  │
-│  │  Model Loading & Prediction Pipeline                     │  │
-│  │  ├─ Load .pkl Model & Encoder                           │  │
-│  │  ├─ Input Validation & Transformation                   │  │
-│  │  ├─ Feature Scaling & Encoding                          │  │
-│  │  ├─ Model Inference (XGBoost/RF/LR)                     │  │
-│  │  └─ Post-processing (Confidence, Grade)                 │  │
-│  └──────────────────────────────────────────────────────────┘  │
-└─────────────────────────────────────────────────────────────────┘
-```
+> Replace the image paths with your actual screenshots in the `assets/` folder.
 
----
+## 6. Key Insights & Findings
 
-## ⚙️ Tech Stack
+- **Model performance:** Random Forest achieved the best test performance with an **R² of 0.85** and **MAE of 4.2 points**.
+- **Prediction consistency:** Five-fold cross-validation produced a mean R² of **0.85 ± 0.02**, indicating consistent performance across folds.
+- **Study habits:** Study hours per day ranked as the strongest predictor in the reported feature-importance analysis.
+- **Student motivation:** Motivation level was identified among the top five predictive features.
+- **Academic history:** Previous academic performance was also a key predictor of exam scores.
+- **Prediction uncertainty:** The application displays a confidence band using the model's MAE to help users interpret estimated scores.
 
-| Layer | Technology | Purpose |
-|-------|-----------|---------|
-| **Frontend** | Streamlit | Interactive web interface with real-time visualizations |
-| **Backend API** | FastAPI, Uvicorn | High-performance REST API with auto-generated docs |
-| **Data Science** | pandas, NumPy | Data manipulation and numerical computing |
-| **ML Models** | scikit-learn | Model training, evaluation, and inference |
-| **Visualization** | Matplotlib, Seaborn, Plotly | EDA charts and interactive dashboards |
-| **Containerization** | Docker, Docker Compose | Environment consistency and orchestration |
-| **Deployment** | Streamlit Cloud | Free, serverless hosting with auto-scaling |
-| **Language** | Python 3.11+ | Full stack implementation |
+## 7. Actionable Business Recommendations
 
----
+| Finding | Recommendation | Potential Business Value |
+|---|---|---|
+| Study hours are a leading predictor | Identify students with limited study time and offer structured study plans | Support more focused academic interventions |
+| Motivation is an important feature | Introduce mentoring and regular progress check-ins | Help improve student engagement |
+| Previous performance influences predictions | Use previous academic results to identify students needing additional support | Enable earlier intervention planning |
+| Predictions include an error range | Use prediction ranges alongside teacher assessments rather than relying on a single score | Support more informed decisions |
+| The API supports batch predictions | Explore batch scoring for larger student groups | Reduce manual assessment effort |
 
-## 📂 Project Structure
+*These are proposed applications of the model, not measured improvements in student outcomes. Predictions should support—not replace—educator judgment.*
+
+## 8. Repository Structure & How to Run
 
 ```text
-STUDENT-PERFORMANCE-PREDICTION/
-│
-├── .streamlit/
-│   └── config.toml
+student-performance-predictor/
 │
 ├── api/
 │   ├── __init__.py
@@ -187,413 +152,10 @@ STUDENT-PERFORMANCE-PREDICTION/
 │   ├── train.py
 │   └── utils.py
 │
-├── .dockerignore
-├── .gitignore
-├── .python-version
-├── docker-compose.yml
+├── .streamlit/
 ├── Dockerfile
 ├── Dockerfile.api
-├── packages.txt
-├── README.md
+├── docker-compose.yml
 ├── requirements.txt
 ├── requirements-dev.txt
-└── setup.sh
-```
----
-
-## 🛠️ Installation & Setup
-
-### Prerequisites
-- **Python 3.11+**
-- **pip** (Python package manager)
-- **Git**
-- *(Optional)* **Docker & Docker Compose** for containerized deployment
-
-### Step 1: Clone the Repository
-
-```bash
-git clone https://github.com/Aryansingh-B/student-performance-predictor.git
-cd student-performance-predictor
-```
-
-### Step 2: Create Virtual Environment
-
-```bash
-# Windows
-python -m venv venv
-venv\Scripts\activate
-
-# macOS/Linux
-python3 -m venv venv
-source venv/bin/activate
-```
-
-### Step 3: Install Dependencies
-
-```bash
-pip install --upgrade pip
-pip install -r requirements.txt
-```
-
-### Step 4: Generate Synthetic Data & Train Model
-
-```bash
-# Create dataset
-python data/generate_data.py
-
-# Train ML model (creates model.pkl in /model directory)
-python src/train.py
-```
-
-### Step 5: Run Streamlit App
-
-```bash
-streamlit run app/streamlit_app.py
-```
-
-The app will open in your browser at `http://localhost:8501`
-
----
-
-## 📱 Live Demo
-
-> **🚀 [Click here to try the live app](https://student-performance-predictor-hciqulnwu7e7n5fjfsaz9b.streamlit.app/)**
->
-> *Deployed on Streamlit Cloud — free, no login needed, zero setup required*
-
-### Demo Walkthrough
-
-1. **Prediction Tab**
-   - Adjust student features using interactive sliders
-   - Click "Predict Score" to get instant prediction
-   - View confidence band (±MAE) and letter grade
-   - See which model made the prediction
-
-2. **Dashboard Tab**
-   - Explore 15+ visualizations
-   - Filter by performance level
-   - Download charts as PNG
-
-3. **Model Comparison Tab**
-   - Compare XGBoost vs. Random Forest vs. Linear Regression
-   - View accuracy metrics, training time, inference speed
-
----
-
-## 💻 Usage Examples
-
-### Example 1: Single Prediction via Web UI
-
-**Input:**
-- Study Hours/Day: 5 hours
-- Attendance: 85%
-- Sleep Hours: 7 hours
-- Motivation Level: 8/10
-- Previous GPA: 3.5
-- Family Income: $50,000
-- Parental Education: Bachelor's
-- School Type: Public
-- Grade Level: 11
-
-**Output:**
-```
-📊 Predicted Exam Score: 78.5
-
-Confidence Band: 75.2 – 81.8 (±3.3 points)
-
-Letter Grade: B+  →  "Good Performance"
-
-Model Used: XGBoost (R² = 0.923, MAE = 3.28)
-```
-
-### Example 2: Batch Prediction via API
-
-```bash
-curl -X POST "http://localhost:8000/predict" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "study_hours": 5.0,
-    "attendance": 85,
-    "sleep_hours": 7.0,
-    "motivation": 8,
-    "previous_gpa": 3.5,
-    "family_income": 50000,
-    "parental_education": "Bachelors",
-    "school_type": "Public",
-    "grade_level": 11
-  }'
-```
-
-**Response:**
-```json
-{
-  "predicted_score": 78.5,
-  "confidence_lower": 75.2,
-  "confidence_upper": 81.8,
-  "letter_grade": "B+",
-  "performance_label": "Good Performance",
-  "model_used": "XGBoost",
-  "model_accuracy_r2": 0.923,
-  "model_mae": 3.28
-}
-```
----
-
-## 📊 Model Performance & Metrics
-
-### Training Dataset
-- **Size:** 1,000 samples
-- **Features:** 9 (study_hours, attendance, sleep_hours, motivation, previous_gpa, family_income, parental_education, school_type, grade_level)
-- **Target:** exam_score (0–100 scale)
-- **Train/Test Split:** 80/20
-
-### Model Comparison
-
-| Model | R² Score | MAE | RMSE | Training Time | Inference Time |
-|-------|----------|-----|------|---------------|----------------|
-| **Random Forest** 🏆 | **0.85** | **4.2** | 5.8 | 310ms | 3.1ms |
-| Decision Tree | 0.80 | 5.1 | 7.2 | 45ms | 0.8ms |
-| Linear Regression | 0.78 | 5.8 | 8.1 | 18ms | 0.5ms |
-
-
-### Feature Importance (Top 5)
-1. **Study Hours per Day** — strongest predictor
-2. **Motivation Level** — used as score multiplier
-3. **Previous Score** — past performance carries weight
-4. **Attendance Percentage** — consistent attendance matters
-5. **Tutoring Sessions per Week** — clear benefit to score
-
-### Cross-Validation Results (5-Fold)
-- **Mean R²:** 0.85 ± 0.02
-- **Mean MAE:** 4.2 ± 0.3
-- **Consistency:** High stability across folds
-
----
-
-## 🐳 Docker Deployment
-
-### Run with Docker Compose (Recommended)
-
-```bash
-docker-compose up -d
-```
-
-This starts:
-- **Streamlit Frontend** on `http://localhost:8501`
-- **FastAPI Backend** on `http://localhost:8000`
-
-### View Logs
-
-```bash
-docker-compose logs -f streamlit
-docker-compose logs -f api
-```
-
-### Stop Services
-
-```bash
-docker-compose down
-```
-
-### Build Images Manually
-
-```bash
-# Build Streamlit image
-docker build -t student-predictor-app -f Dockerfile .
-
-# Build FastAPI image
-docker build -t student-predictor-api -f Dockerfile.api .
-
-# Run containers
-docker run -p 8501:8501 student-predictor-app
-docker run -p 8000:8000 student-predictor-api
-```
-
----
-
-## ☁️ Deployment Guide
-
-### Deploy Streamlit App to Streamlit Cloud
-
-1. **Push to GitHub** (already done)
-2. **Go to** [share.streamlit.io](https://share.streamlit.io)
-3. **Click** "New app" → Select this repo
-4. **Set main file path** to `app/streamlit_app.py`
-5. **Deploy!** ✅
-
-*Your app will be live in 2-3 minutes on `your-username-student-predictor.streamlit.app`*
-
-### Deploy FastAPI to Cloud (Examples)
-
-**Option A: Heroku (Deprecated, use alternatives)**
-
-**Option B: Railway.app** (Easiest for Python)
-```bash
-railway link
-railway up
-```
-
-**Option C: Google Cloud Run**
-```bash
-gcloud run deploy student-predictor --source . --platform managed --region us-central1
-```
-
-**Option D: AWS Lambda + API Gateway** (Serverless)
-- Package with `serverless` framework
-- Auto-scales on demand
-
----
-
-## 📈 Business Metrics & KPIs
-
-Track these metrics in production:
-
-| KPI | Current | Target |
-|-----|---------|--------|
-| Prediction Accuracy (R²) | 0.923 | > 0.95 |
-| Model Inference Time | 2.3ms | < 5ms |
-| API Uptime | 99.5% | 99.9%+ |
-| Prediction Volume | 1000+ req/sec | 10,000+ req/sec |
-| False Negative Rate | 2.1% | < 1% |
-
----
-
-## 🔄 Development Workflow
-
-### Making Changes
-
-1. **Create feature branch:**
-   ```bash
-   git checkout -b feature/your-feature-name
-   ```
-
-2. **Make changes** and test locally:
-   ```bash
-   python src/train.py
-   streamlit run app/streamlit_app.py
-   ```
-
-3. **Commit & push:**
-   ```bash
-   git add .
-   git commit -m "Add feature: descriptive message"
-   git push origin feature/your-feature-name
-   ```
-
-4. **Create Pull Request** on GitHub
-
-### Testing
-
-Run unit tests (recommended):
-```bash
-pytest tests/ -v
-```
-
----
-
-## 🚀 Roadmap & Future Enhancements
-
-- [ ] **SHAP Explainability Dashboard** — Visual feature importance per prediction
-- [ ] **Multi-grade Level Support** — Separate models for grade 9-12
-- [ ] **Real-time Monitoring** — Track prediction accuracy in production
-- [ ] **A/B Testing** — Compare model versions on live traffic
-- [ ] **Batch CSV Upload** — Process 1000+ students at once
-- [ ] **Mobile App** — React Native/Flutter companion app
-- [ ] **Natural Language Explanation** — Generate written insights for parents
-- [ ] **Feedback Loop** — Retrain models with actual exam scores
-- [ ] **Student Clustering** — Segment students by learning patterns
-- [ ] **API Rate Limiting & Auth** — Enterprise security features
-
----
-
-## 🤝 Contributing
-
-We welcome contributions! Here's how:
-
-1. **Fork** the repository
-2. **Create** a feature branch (`git checkout -b feature/amazing-feature`)
-3. **Commit** your changes (`git commit -m 'Add amazing feature'`)
-4. **Push** to the branch (`git push origin feature/amazing-feature`)
-5. **Open** a Pull Request
-
-### Guidelines
-- Follow PEP 8 style guide
-- Add docstrings to functions
-- Update README if adding features
-- Test before submitting PR
-
----
-
-## 📝 License
-
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
-
-### What you can do:
-✅ Use commercially  
-✅ Modify & distribute  
-✅ Use privately  
-
-### Conditions:
-📌 Include license & copyright notice  
-
----
-
-## 👤 Author & Contact
-
-**Aryansingh Bais**  
-*Aspiring Data Scientist | ML Engineer in Training*
-
-- 💼 **LinkedIn:** [linkedin.com/in/aryansinghbais8/](https://www.linkedin.com/in/aryansinghbais8/)
-- 🐙 **GitHub:** [@Aryansingh-B](https://github.com/Aryansingh-B)
-- 📧 **Email:** [your-email@example.com](mailto:baisaryansingh@gmail.com)
-- 🎓 **Training:** Data Science with GenAI & Agentic AI — NareshIT, Hyderabad
-
----
-
-## 🙏 Acknowledgments
-
-- **Dataset:** Synthetically generated for educational purposes
-- **Libraries:** pandas, scikit-learn, FastAPI, Streamlit communities
-- **Inspiration:** Real-world educational challenges in India
-
----
-
-## ❓ FAQ
-
-**Q: Can I use this for my school?**  
-A: Yes! Deploy it following the Docker instructions. Customize the features for your student population.
-
-**Q: How accurate are the predictions?**  
-A: R² = 0.923 on our test set. Real-world accuracy depends on data quality. Expect ±3-5 point error margins.
-
-**Q: What if my student data is different?**  
-A: Retrain the model with your dataset. Run `python src/train.py` with your data/student_data.csv.
-
-**Q: Can I use this commercially?**  
-A: Yes, it's MIT licensed. Just include the license file in your distribution.
-
-**Q: How do I get predictions for 1000 students at once?**  
-A: Use the FastAPI endpoint with batch requests or develop a CSV upload feature.
-
-**Q: Is my data safe?**  
-A: In local mode, all data stays on your machine. For cloud deployment, follow your cloud provider's security guidelines.
-
----
-
-## 📞 Support
-
-- **Issues:** Open an issue on [GitHub Issues](https://github.com/Aryansingh-B/student-performance-predictor/issues)
-- **Discussions:** Join [GitHub Discussions](https://github.com/Aryansingh-B/student-performance-predictor/discussions)
-- **Email:** Reach out directly (see author section above)
-
----
-
-<div align="center">
-
-**Made with ❤️ by Aryansingh Bais**
-
-⭐ **If this project helped you, consider giving it a star!** ⭐
-
-[⬆ Back to Top](#-student-performance-predictor)
-
-</div>
+└── README.md

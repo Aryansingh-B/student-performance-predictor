@@ -84,26 +84,7 @@ The project uses a **synthetically generated dataset of 1,000 student records** 
 | Decision Tree | 0.80 | 5.1 | 7.2 |
 | Linear Regression | 0.78 | 5.8 | 8.1 |
 
-## 5. Dashboard Preview & Visual Highlights
-
-### Student Performance Prediction
-![Prediction Interface](assets/prediction_interface.png)
-
-*Interactive student inputs, predicted exam scores, confidence bands, and letter-grade mapping.*
-
-### Data Exploration Dashboard
-![EDA Dashboard](assets/eda_dashboard.png)
-
-*Explores score distributions, feature relationships, attendance, study habits, and other performance patterns.*
-
-### Model Comparison
-![Model Comparison](assets/model_comparison.png)
-
-*Compares regression models using R², MAE, RMSE, and model performance metrics.*
-
-> Replace the image paths with your actual screenshots in the `assets/` folder.
-
-## 6. Key Insights & Findings
+## 5. Key Insights & Findings
 
 - **Model performance:** Random Forest achieved the best test performance with an **R² of 0.85** and **MAE of 4.2 points**.
 - **Prediction consistency:** Five-fold cross-validation produced a mean R² of **0.85 ± 0.02**, indicating consistent performance across folds.
@@ -112,7 +93,7 @@ The project uses a **synthetically generated dataset of 1,000 student records** 
 - **Academic history:** Previous academic performance was also a key predictor of exam scores.
 - **Prediction uncertainty:** The application displays a confidence band using the model's MAE to help users interpret estimated scores.
 
-## 7. Actionable Business Recommendations
+## 6. Actionable Business Recommendations
 
 | Finding | Recommendation | Potential Business Value |
 |---|---|---|
@@ -124,7 +105,7 @@ The project uses a **synthetically generated dataset of 1,000 student records** 
 
 *These are proposed applications of the model, not measured improvements in student outcomes. Predictions should support—not replace—educator judgment.*
 
-## 8. Repository Structure & How to Run
+## 7. Repository Structure & How to Run
 
 ```text
 student-performance-predictor/
